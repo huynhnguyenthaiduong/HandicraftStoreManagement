@@ -1,0 +1,106 @@
+﻿@page
+@model HandicraftSMng_HuynhNgThaiDuong_SE171581.Pages.Handicrafts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    int count = 0;
+}
+
+<h1 style="text-align: center; margin-bottom: 7%">Handicraft</h1>
+
+<form method="post" class="mb-5">
+    <div class="d-md-inline-flex justify-content-between" style="margin-right: 61%">
+        <select class="p-1" asp-for="SearchProperty">
+            <option value="Name">Name</option>
+            <option value="OriginalSource">OriginalSource</option>
+            <option value="Material">Material</option>
+            <option value="Price">Price</option>
+        </select>
+        <input asp-for="SearchValue" />
+        <input type="submit" value="Search" />
+    </div>
+    <div class="d-md-inline-flex justify-content-between">
+        <a class="btn btn-primary" asp-page="Create">Create New</a>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].HandicraftName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].OriginalSource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handicraft[0].HandicraftCategory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Handicraft)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HandicraftName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OriginalSource)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.CategoryName[count])
+                </td>
+                <td>
+                    <a class="btn btn-primary mb-2" style="width:90px; margin-left: 15%" asp-page="./Edit" asp-route-id="@item.HandicraftId">Edit</a>
+                    <a class="btn btn-warning mb-2" style="width:90px; margin-left: 15%" asp-page="./Details" asp-route-id="@item.HandicraftId">Details</a>
+                    <a class="btn btn-danger" style="width:90px; margin-left: 15%" asp-page="./Delete" asp-route-id="@item.HandicraftId">Delete</a>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+
+<div>
+    <ul class="pagination">
+        @for(var i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a asp-page="/Handicrafts/Index" asp-route-currentpage="@i" asp-route-searchproperty="@Model.SearchProperty"
+                asp-route-searchvalue="@Model.SearchValue" class="page-link">@i</a>
+            </li>
+        }
+    </ul>
+</div>

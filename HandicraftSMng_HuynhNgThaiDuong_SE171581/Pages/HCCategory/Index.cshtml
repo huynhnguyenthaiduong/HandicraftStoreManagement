@@ -1,0 +1,67 @@
+﻿@page
+@model HandicraftSMng_HuynhNgThaiDuong_SE171581.Pages.HCCategory.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center; margin-bottom: 7%">Handicraft Category</h1>
+
+<form method="post" class="mb-5 row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="d-md-inline-flex justify-content-between" style="margin-right: 15%">
+            <input asp-for="SearchValue" />
+            <input type="submit" value="Search" />
+        </div>
+        <div class="d-md-inline-flex justify-content-between">
+            <a class="btn btn-primary" asp-page="Create">Create New</a>
+        </div>
+    </div>
+    <div class="col-sm-3"></div>
+
+</form>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="table" style="padding-right:0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HandicraftCategory[0].HCCategoryName)
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="row">
+                @foreach (var item in Model.HandicraftCategory)
+                {
+                    <tr style="padding-right:0">
+                        <td class="col-sm-8">
+                            @Html.DisplayFor(modelItem => item.HCCategoryName)
+                        </td>
+                        <td class="col-sm-4">
+                            <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.HandicraftCategoryId">Edit</a> |
+                            <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.HandicraftCategoryId">Details</a> |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <ul class="pagination">
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a asp-page="/HCCategory/Index" asp-route-currentpage="@i" asp-route-searchvalue="@Model.SearchValue" class="page-link">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+
+
+

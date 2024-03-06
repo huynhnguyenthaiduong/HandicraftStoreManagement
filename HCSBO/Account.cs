@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HCSBO
+{
+    public class Account
+    {
+        [Key]
+        public Guid AccountId { get; set; }
+        [ForeignKey("RoleId")]
+        public Guid RoleId { get; set; }
+        [StringLength(50)]
+        [Required(ErrorMessage = "UserName is required")]
+        public string UserName { get; set; } = null!;
+        [Required(ErrorMessage ="Password is required")]
+        public string Password { get; set; } = null!;
+        public string? FullName { get; set; }
+        [Required(ErrorMessage = "Email is required")]
+        [RegularExpression(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$", ErrorMessage = "Invalid email format")]
+        public string Email { get; set; } = null!;
+        public string? Gender { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Address { get; set; }
+        public bool Status { get; set; }
+
+        
+        public virtual Role Role { get; set; } = null!;
+    }
+}

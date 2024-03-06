@@ -1,0 +1,80 @@
+﻿@page
+@model HandicraftSMng_HuynhNgThaiDuong_SE171581.Pages.Accounts.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 style="text-align: center; margin-bottom: 7%">Edit Account</h1>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form method="post" class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Account.AccountId" />
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.RoleId" class="control-label" style="font-weight:bold"></label>
+                <select asp-for="Account.RoleId" class="form-control" asp-items="ViewBag.Role"></select>
+                <span asp-validation-for="Account.RoleId" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.UserName" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="Account.UserName" class="form-control" />
+                <span asp-validation-for="Account.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.Password" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="Account.Password" class="form-control" />
+                <span asp-validation-for="Account.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.FullName" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="Account.FullName" class="form-control" />
+                <span asp-validation-for="Account.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.Email" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="Account.Email" class="form-control" />
+                <span asp-validation-for="Account.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.Gender" class="control-label" style="font-weight:bold"></label>
+                <select class="form-select" asp-for="Account.Gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Account.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.PhoneNumber" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="Account.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Account.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6" style="margin-bottom: 5%">
+                <label asp-for="Account.Address" class="control-label" style="font-weight:bold"></label>
+                <input asp-for="Account.Address" class="form-control" />
+                <span asp-validation-for="Account.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check col-sm-6" style="margin-bottom:5%">
+                <label class="control-label" style="margin-right:10%; font-weight:bold">
+                    @Html.DisplayNameFor(model => model.Account.Status)
+                </label>
+
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Account.Status" />
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" /> | <a class="btn btn-secondary" asp-page="./Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

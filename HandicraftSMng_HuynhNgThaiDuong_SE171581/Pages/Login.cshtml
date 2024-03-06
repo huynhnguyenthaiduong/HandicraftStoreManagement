@@ -1,0 +1,43 @@
+﻿@page
+@model HandicraftSMng_HuynhNgThaiDuong_SE171581.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login page";
+}
+
+<div class="row">
+    <div class="col-lg-6 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Login</h2>
+
+        @if(Model.ErrorMessage.Length > 0)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@Model.ErrorMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"/>
+            </div>
+        }
+
+        <form method="post">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <span asp-validation-for="Account.Email" class="text-danger"></span>
+                    <input class="form-control" type="text" placeholder="Enter Email" asp-for="Account.Email" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Pasword</label>
+                <div class="col-sm-8">
+                    <span asp-validation-for="Account.Password" class="text-danger"></span>
+                    <input class="form-control" type="password" placeholder="Enter Password" asp-for="Account.Password" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-sm-4" col-sm-8>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
